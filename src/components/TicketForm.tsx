@@ -59,7 +59,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
               title: values.title,
               description: values.description,
               priority: values.priority as "Low" | "Medium" | "High",
-              status: "Open" as const,
+                status:'Open',
               createdAt: new Date().toString(),
               isDeleted: false,
             };
@@ -91,7 +91,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
                   as="textarea"
                   name="description"
                   disabled={!values.title.length}
-                  className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md"
+                  className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md outline-none"
                 />
                 {touched.description && errors.description && (
                   <p className="text-red-500 text-sm">{errors.description}</p>

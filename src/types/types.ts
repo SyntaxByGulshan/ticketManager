@@ -4,14 +4,15 @@ interface commentType{
   commentTime:string;
   commentStatus:"Open" | "In Progress" | "Resolved";
 }
+
 export default interface TicketType {
   id: string;
   title: string;
   description: string;
   priority: "Low" | "Medium" | "High";
-  status: "Open" | "In Progress" | "Resolved";
+  status:"Open" | "In Progress" | "Resolved";
   createdAt: string;
+  resolvedAt?:string;
   isDeleted:boolean;  
   comments?:commentType[];
-
 }

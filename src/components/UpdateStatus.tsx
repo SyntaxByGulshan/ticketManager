@@ -10,7 +10,6 @@ interface UpdateStatusProps {
 export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch=useDispatch()
-  console.log(className)
   return (
     <div
       className=""
@@ -35,7 +34,9 @@ export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
                 setShowOptions(false)
                 dispatch(updateStatus({
                     id:ticket.id,
-                  status:'In Progress',
+                
+                    status:'In Progress',
+                  
                 }))
             }}
           >
@@ -48,7 +49,9 @@ export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
                 setShowOptions(false)
                 dispatch(updateStatus({
                     id:ticket.id,
-                  status:'Resolved',
+              
+                    status:'Resolved',
+                    
                 }))
             }}
           >

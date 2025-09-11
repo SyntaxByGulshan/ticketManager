@@ -14,7 +14,7 @@ export default function DeleteMessage({
   onCancel,
   onConfirm,
 }: MessageProps) {
-  const isDeletable = ticket.status === "Resolved";
+  const isDeletable = ticket.status=== "Resolved";
 
   return (
     <div
