@@ -7,13 +7,13 @@ import UpdateStatus from "../components/UpdateStatus";
 import DeleteMessage from "../components/DeleteMassage";
 import type TicketType from "../types/types";
 import { Search } from 'lucide-react';
-import { CircleCheck ,CircleEllipsis,ClockFading} from 'lucide-react';
+import {TicketPlus, CircleCheck ,CircleEllipsis,ClockFading} from 'lucide-react';
 
-interface DashboardProps {
+interface TicketListProps {
   onCreateTicket: () => void;
 }
 
-export default function Dashboard({ onCreateTicket }: DashboardProps) {
+export default function TicketListPage({ onCreateTicket }: TicketListProps) {
   const tickets = useSelector((state: RootState) => state.tickets.tickets);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,8 +53,9 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
         />
         </div>
 
-        {/* filter  */}
+        {/* filter section  + add new ticket button */}
         <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto ">
+          {/* this is status filter section */}
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
@@ -65,6 +66,7 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
             <option value="In Progress">In Progress</option>
             <option value="Resolved">Resolved</option>
           </select>
+          {/* this is priority filter section */}
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
@@ -75,38 +77,27 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
-          {/* add new ticket */}
+          {/* add new ticket  button*/}
           <button
             onClick={onCreateTicket}
-            className="px-5 py-2 bg-green-500 text-gray-200  rounded-md shadow hover:bg-green-600 "
+            className="px-5 py-2 bg-[#30aa2e] text-gray-200  rounded-md shadow hover:bg-[#0c9007] "
           >
-            + Add Ticket
+             <div className="flex gap-1 items-center justify-center">
+              <span><TicketPlus className="h-5" /></span>
+             <span> Add Ticket</span>
+             </div>
           </button>
         </div>
       </div>
-
-      {/* Delete Confirmation */}
-      {isToDelete && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 flex justify-center items-center px-4">
-          <DeleteMessage
-            className="bg-white rounded-md shadow-xl w-full max-w-md p-6"
-            ticket={isToDelete}
-            onCancel={() => SetIsToDelete(false)}
-            onConfirm={() => {
-              dispatch(deleteTicket(isToDelete.id));
-              SetIsToDelete(false);
-            }}
-          />
-        </div>
-      )}
-
       {/* Ticket Table */}
       {filteredTickets.length === 0 ? (
+        // if ticket is not present
         <p className="text-gray-600 mt-8 text-center text-lg">
           No tickets found 
         </p>
       ) : (
-        <div className="overflow-x-auto  shadow-md rounded-md ">
+        // if ticket is present
+        <div className="overflow-x-auto  rounded-md ">
           <table className="w-full border-collapse text-sm md:text-base">
             {/* table header */}
             <thead>
@@ -124,7 +115,7 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
               {filteredTickets.map((ticket) => (
                 <tr
                   key={ticket.id}
-                  className="hover:bg-gray-200 transition cursor-pointer even:bg-gray-100"
+                  className="hover:bg-gray-200  cursor-pointer even:bg-gray-100"
                 >
                   {/* ticket id */}
                   <td className="p-4 border-t">{ticket.id}</td>
@@ -134,10 +125,10 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
                   <td
                     className={`p-4 border-t border-black  ${
                       ticket.priority === "High"
-                        ? "text-red-500"
+                        ? "text-[#d83646]"
                         : ticket.priority === "Medium"
-                        ? "text-blue-500"
-                        : "text-green-500"
+                        ? "text-[#568ec0]"
+                        : "text-[#30aa2e]"
                     }`}
                   >
                     {ticket.priority}
@@ -146,32 +137,37 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
                   <td 
                   className={`p-4 border-t border-black  ${
                       ticket.status === "Open"
-                        ? "text-red-500"
+                        ? "text-[#d83646]"
                         : ticket.status === "In Progress"
-                        ? "text-blue-500"
-                        : "text-green-500"
+                        ? "text-yellow-500"
+                        : "text-[#30aa2e]"
                     }`}
                   >
-                   <div className="flex gap-1">
-                    {ticket.status==='Resolved'?<span className="h-0.5"> <CircleCheck /></span >:(ticket.status==='In Progress'?<span className="h-0.5"> <CircleEllipsis /></span>:<span className="h-0.5"> <ClockFading /></span>)} 
+                   <div className="flex gap-1 items-center">
+                    {ticket.status==='Resolved'?<span> <CircleCheck className="h-5"/></span >:(ticket.status==='In Progress'?<span> <CircleEllipsis className="h-5" /></span>:<span> <ClockFading className="h-5" /></span>)} 
                     <span>{ticket.status}</span>
                    </div>
                     </td>
+                    {/* created time */}
                   <td className="p-4 border-t">
-                    {new Date(ticket.createdAt).toLocaleString()}
+                    {ticket.createdAt}
                   </td>
+                  {/* actions on ticket */}
                   <td className="p-4 border-t  gap-2 ">
                     <div className="flex justify-center gap-4">
+                      {/* view button */}
                       <button
                       onClick={() => navigate(`/ticket/${ticket.id}`)}
-                      className="px-3 py-1 bg-blue-500 text-gray-200 rounded-md shadow hover:bg-blue-600 "
+                      className="px-3 py-1 bg-blue-500 text-gray-200 rounded-md shadow hover:bg-[#267ac4] "
                     >
                       View
                     </button>
-                    <UpdateStatus className={`px-3 py-1 text-gray-200 rounded-md shadow ${ticket.status==='Resolved'?'bg-green-300 text-gray-50':'bg-green-500 hover:bg-gray-600 text-gray-200'}`} ticket={ticket} />
+                    {/* update button */}
+                    <UpdateStatus className={`px-3 py-1 text-gray-200 rounded-md shadow ${ticket.status==='Resolved'?'bg-[#7d967c] text-gray-50 cursor-not-allowed':'bg-[#30aa2e] hover:bg-[#0c8908] text-gray-200'}`} ticket={ticket} />
+                    {/* delete button */}
                     <button
                       onClick={() => SetIsToDelete(ticket)}
-                      className="px-3 py-1 bg-red-500 text-gray-200 rounded-md shadow hover:bg-red-600"
+                      className="px-3 py-1 bg-[#d83646] text-gray-200 rounded-md shadow hover:bg-[#aa0919]"
                     >
                       Delete
                     </button>
@@ -183,6 +179,22 @@ export default function Dashboard({ onCreateTicket }: DashboardProps) {
           </table>
         </div>
       )}
+
+      {/* Delete Confirmation */}
+      {isToDelete && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 flex justify-center items-center px-4">
+          <DeleteMessage
+            className="bg-white rounded-md shadow-xl w-full max-w-md p-6"
+            ticket={isToDelete}
+            onCancel={() => SetIsToDelete(false)}
+            onConfirm={() => {
+              dispatch(deleteTicket(isToDelete.id));
+              SetIsToDelete(false);
+            }}
+          />
+        </div>
+      )}
     </div>
+    
   );
 }

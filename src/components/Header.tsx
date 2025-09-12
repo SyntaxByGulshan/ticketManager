@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-
+import {Ticket ,LayoutDashboard} from 'lucide-react'
 const Header = () => {
   const navigate = useNavigate();
 
@@ -10,17 +10,30 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-gray-700 cursor-pointer" onClick={() => navigate("")}>
+              <h1 className="md:text-2xl  font-bold text-gray-700 cursor-pointer" onClick={() => navigate("")}>
                 IssueTrack
               </h1>
             </div>
           </div>
-          <div>
+          <div className="space-x-2">
             <button
               onClick={() => navigate("report")}
-              className="bg-blue-500 text-gray-200 px-4 py-2 rounded hover:bg-blue-600 transition"
-            >
-              Reports
+              className="bg-blue-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-[#0a68bb] "
+            > 
+             <div className="flex items-center gap-1">
+              <span><LayoutDashboard  className="h-5"/></span>
+              <span className="hidden md:flex"> Dashbord</span>
+             </div>
+            </button>
+            <button 
+            onClick={()=>{
+              navigate('')
+            }}
+            className="bg-[#1c7d36] text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600 ">
+               <div className="flex items-center gap-1">
+                   <Ticket className='h-5' />
+                <span className="hidden md:flex"> Tickets</span>
+               </div>
             </button>
           </div>
         </div>

@@ -20,10 +20,11 @@ const ticketSlice = createSlice({
       state.tickets.push(action.payload);
       localStorage.setItem("ticket", JSON.stringify(state.tickets));
     },
-    updateStatus: (state, action: PayloadAction<{ id: string; status: TicketType["status"] }>) => {
+    updateStatus: (state, action: PayloadAction<{ id: string, status: TicketType["status"] ,resolvedAt?:TicketType['resolvedAt'] }>) => {
       const ticket = state.tickets.find((t) => t.id === action.payload.id);
       if (ticket) {
         ticket.status = action.payload.status;
+        ticket.resolvedAt=action.payload.resolvedAt;
         localStorage.setItem("ticket", JSON.stringify(state.tickets));
       }
     },

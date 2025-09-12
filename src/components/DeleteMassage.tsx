@@ -51,7 +51,7 @@ export default function DeleteMessage({
                       ticket.status === "Open"
                         ? "text-red-500"
                         : ticket.status === "In Progress"
-                        ? "text-blue-500"
+                        ? "text-yellow-500"
                         : "text-green-500"
                     }`}>
           <span className="font-bold text-gray-600">Status:</span> {ticket.status}

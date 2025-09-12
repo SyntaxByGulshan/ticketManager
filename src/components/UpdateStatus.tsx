@@ -13,9 +13,10 @@ export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
   return (
     <div
       className=""
-       onMouseEnter={() => setShowOptions(true)}
+      onMouseEnter={() => setShowOptions(true)}
       onMouseLeave={() => setShowOptions(false)}
     >
+      {/* update button */}
       <button
       title={ticket.status==='Resolved' ? "this ticket is resolved":''}
       className={className}
@@ -29,12 +30,11 @@ export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
             {/* hide in progress status if it is already in In Progress */}
             {ticket.status!=='In Progress' && (
             <button
-            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-t-lg transition"
+            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-t-lg border-b "
             onClick={() => {
                 setShowOptions(false)
                 dispatch(updateStatus({
                     id:ticket.id,
-                
                     status:'In Progress',
                   
                 }))
@@ -44,13 +44,13 @@ export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
           </button>) }
           
           <button
-            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-b-lg transition border-t"
+            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-b-lg  "
             onClick={() =>{
                 setShowOptions(false)
                 dispatch(updateStatus({
                     id:ticket.id,
-              
                     status:'Resolved',
+                    resolvedAt:new Date().toLocaleString()
                     
                 }))
             }}

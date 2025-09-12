@@ -7,7 +7,7 @@ import { X } from 'lucide-react';
 
 const validationSchema = Yup.object({
   title: Yup.string()
-    .matches(/^(?!.*\s{3,}).*$/, "No more than two consecutive spaces allowed")
+    .matches(/^[A-Za-z](?:[A-Za-z0-9\.,_\n]|(?!\s{2,})\s)*$/, "Only one space allowed between words")
     .required("Title cannot be empty")
     .min(3, "Title must be at least 3 characters")
     .max(30, "Title cannot exceed 30 characters"),
@@ -54,13 +54,14 @@ export default function TicketForm({ onClose }: TicketFormProps) {
           validateOnBlur={true}
           validateOnChange={true}
           onSubmit={(values, { resetForm }) => {
+            console.log(values.description)
             const newTicket:TicketType = {
               id: `TN${new Date().getTime()}`,
               title: values.title,
               description: values.description,
               priority: values.priority as "Low" | "Medium" | "High",
                 status:'Open',
-              createdAt: new Date().toString(),
+              createdAt: new Date().toLocaleString(),
               isDeleted: false,
             };
 
@@ -105,7 +106,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
                   as="select"
                   name="priority"
                   disabled={!values.title.length}
-                  className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md"
+                  className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md outline-none"
                 >
                   <option disabled value="">
                     Select
@@ -122,7 +123,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-gray-200 hover:bg-blue-600 py-2 rounded-md"
+                className="w-full bg-[#568ec0] text-gray-200 hover:bg-[#3f6b91] py-2 rounded-md"
               >
                 Create Ticket
               </button>
