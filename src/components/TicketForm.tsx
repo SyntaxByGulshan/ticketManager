@@ -85,7 +85,6 @@ export default function TicketForm({ onClose }: TicketFormProps) {
               isDeleted:false
               
             };
-
             dispatch(addTicket(newTicket)); 
             resetForm();
             onClose()
@@ -144,7 +143,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-[#568ec0] text-gray-200 hover:bg-[#3f6b91] py-2 rounded-md"
+                className="w-full bg-blue-500 text-gray-200 hover:bg-blue-600 py-2 rounded-md"
               >
                 Create Ticket
               </button>

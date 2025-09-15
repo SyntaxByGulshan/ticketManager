@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import UpdateStatus from "../components/UpdateStatus";
 import DeleteMessage from "../components/DeleteMassage";
 import type TicketType from "../types/types";
-import { Search } from "lucide-react";
 import {
   TicketPlus,
   CircleCheck,
@@ -17,6 +16,7 @@ import {
 import Notification from "../components/Notification";
 import  type { NotificationProps } from "../components/Notification";
 import ResetButton from "../components/ResetButton";
+import SearchBar from "../components/SearchBar";
 interface TicketListProps {
   onCreateTicket: () => void;
 }
@@ -55,16 +55,8 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
       {/* Search + Filters */}
       <div className="bg-gray-300 shadow-md rounded-md p-4 md:p-6 mb-6 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
         {/* Search */}
-        <div className="flex justify-baseline items-center gap-1 rounded-md border-2 border-gray-400 shadow-sm bg-gray-200  md:w-1/3 py-1 px-4">
-          <Search className="text-gray-400" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by title..."
-            className="w-full p-1 outline-none"
-          />
-        </div>
+       
+        <SearchBar search={search} setSearch={setSearch}/>
 
         {/* filter section  + add new ticket button */}
         <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto ">
@@ -107,7 +99,7 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
               <span>
                 <TicketPlus className="h-5" />
               </span>
-              <span> Add Ticket</span>
+              <span> AddTicket</span>
             </div>
           </button>
         </div>
