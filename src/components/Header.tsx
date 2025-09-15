@@ -29,10 +29,10 @@ const Header = () => {
             onClick={()=>{
               navigate('')
             }}
-            className="bg-[#1c7d36] text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600 ">
+            className="bg-[#1c7d36] text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600  " >
                <div className="flex items-center gap-1">
                    <Ticket className='h-5 m-2 md:m-0' />
-                <span className="hidden md:flex"> Tickets</span>
+                <span className="hidden md:flex">Home</span>
                </div>
             </button>
           </div>

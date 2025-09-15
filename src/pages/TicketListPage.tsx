@@ -14,9 +14,14 @@ import {
   ClockFading,
 } from "lucide-react";
 import Notification from "../components/Notification";
-
+import  type { NotificationProps } from "../components/Notification";
 interface TicketListProps {
   onCreateTicket: () => void;
+}
+interface TicketNotifictionProps{
+  notificationType:'Delete'|"In Progress" | "Resolved" | 'Open',
+  id:NotificationProps['id'],
+  message:NotificationProps['notificationMessage']
 }
 
 export default function TicketListPage({ onCreateTicket }: TicketListProps) {
@@ -28,7 +33,7 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
   const [statusFilter, setStatusFilter] = useState("All");
   const [priorityFilter, setPriorityFilter] = useState("All");
   const [isToDelete, SetIsToDelete] = useState<TicketType | false>();
-  const [showNotification, setShowNotification] = useState<TicketType['id']>('');
+  const [showNotification, setShowNotification] = useState<TicketNotifictionProps|undefined>();
 
   // apply search + filters
   const filteredTickets = tickets.filter((ticket) => {
@@ -185,16 +190,23 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
                       </button>
                       {/* update button */}
                       <UpdateStatus
-                        className={`px-3 py-1 text-gray-200 rounded-md shadow ${
-                          ticket.status === "Resolved"
-                            ? "bg-[#7d967c] text-gray-50 cursor-not-allowed"
-                            : "bg-[#30aa2e] hover:bg-[#0c8908] text-gray-200"
-                        }`}
+                       
+                        onUpdate={(status)=>{
+                         setShowNotification({
+                           notificationType:status,
+                            id:ticket.id,
+                            message:`Status updated to ${status}`
+                         })
+                        }}
+                        className={`bg-green-400 border-0 text-gray-100`}
                         ticket={ticket}
                       />
                       {/* delete button */}
                       <button
-                        onClick={() => SetIsToDelete(ticket)}
+                        onClick={() => {
+                          SetIsToDelete(ticket)
+                          
+                        }}
                         className="px-3 py-1 bg-[#d83646] text-gray-200 rounded-md shadow hover:bg-[#aa0919]"
                       >
                         Delete
@@ -218,23 +230,36 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
             onConfirm={() => {
               dispatch(deleteTicket(isToDelete.id));
               SetIsToDelete(false);
+              setShowNotification({
+               notificationType:'Delete',
+               id:isToDelete.id,
+               message:`Deleted`
+              })
             }}
           />
         </div>
       )}
       {/* notification */}
       {showNotification && (
-        <Notification
-          notificationMessage="hello"
-          className="bg-amber-400 fixed top-2 left-1/2 rounded-2xl px-2 py-1"
-          id={showNotification}
+        <div className="fixed w-screen flex justify-center items-center  top-2 left-0">
+          <Notification
+          notificationMessage={showNotification.message}
+          className={`relative text-gray-200  p-2 rounded-md text-center ${showNotification.notificationType === 'Delete'
+    ? 'bg-red-500 '
+    : showNotification.notificationType === 'Resolved'
+      ? 'bg-green-500 '
+      : showNotification.notificationType === 'In Progress'
+        ? 'bg-yellow-500'
+        : 'bg-blue-500'}`}
+          id={showNotification.id}
           onLoad={()=>{
             setTimeout(() => {
-              setShowNotification('')
+              setShowNotification(undefined)
             }, 500);
           }}
 
         />
+        </div>
       )}
     </div>
   );

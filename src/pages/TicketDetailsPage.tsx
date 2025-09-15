@@ -7,6 +7,13 @@ import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import type TicketType from "../types/types";
 import DeleteMessage from "../components/DeleteMassage";
+import type { NotificationProps } from "../components/Notification";
+import Notification from "../components/Notification";
+interface TicketNotifictionProps {
+  notificationType: "Delete" | TicketType["status"];
+  id: NotificationProps["id"];
+  message: NotificationProps["notificationMessage"];
+}
 
 export default function TicketDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -15,9 +22,12 @@ export default function TicketDetailPage() {
   const [newComment, setNewComment] = useState("");
   const [isToDelete, SetIsToDelete] = useState<TicketType | false>();
   const [commentError, setCommentError] = useState("");
+  const [showNotification, setShowNotification] = useState<
+    TicketNotifictionProps | undefined
+  >();
 
   const tickets = useSelector((state: RootState) => state.tickets.tickets);
-  const ticket = tickets.find((t) => t.id === id && t.isDeleted===false);
+  const ticket = tickets.find((t) => t.id === id && t.isDeleted === false);
   // return if no ticket is present
   if (!ticket) {
     return (
@@ -79,12 +89,12 @@ export default function TicketDetailPage() {
   return (
     <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-4 my-2 md:my-12">
       <button
-            onClick={() => navigate(-1)}
-            className=" mx-2 p-2 bg-gray-500 text-gray-200 rounded hover:bg-gray-700 flex items-center"
-          >
-            <ArrowLeft className="h-5 " />
-            <span>Back</span>
-          </button>
+        onClick={() => navigate(-1)}
+        className=" mx-2 p-2 bg-gray-500 text-gray-200 rounded hover:bg-gray-700 flex items-center"
+      >
+        <ArrowLeft className="h-5 " />
+        <span>Back</span>
+      </button>
       {/* this is titiel */}
       <h2 className="text-2xl font-bold my-4 p-2">Ticket Details</h2>
       {/* ticket details section */}
@@ -213,11 +223,14 @@ export default function TicketDetailPage() {
       <div className="flex flex-wrap gap-3 mt-6 p-2">
         {/* update status button  */}
         <UpdateStatus
-          className={`px-4 py-2 rounded-md ${
-            ticket.status === "Resolved"
-              ? "bg-green-300 text-gray-50 cursor-not-allowed"
-              : "bg-[#30aa2e] hover:bg-[#0c8908] text-gray-200"
-          }`}
+          onUpdate={(status) => {
+            setShowNotification({
+              notificationType: status,
+              id: ticket.id,
+              message: `update status to ${status}`,
+            });
+          }}
+          className=''
           ticket={ticket}
         />
         {/* delete button */}
@@ -238,11 +251,32 @@ export default function TicketDetailPage() {
             onConfirm={() => {
               dispatch(deleteTicket(isToDelete.id));
               SetIsToDelete(false);
-              navigate(-1)
+              navigate(-1);
             }}
           />
         </div>
       )}
+      {showNotification && (
+              <div className="fixed w-screen flex justify-center items-center  top-2 left-0">
+                <Notification
+                notificationMessage={showNotification.message}
+                className={`relative text-gray-200  p-2 rounded-md text-center ${showNotification.notificationType === 'Delete'
+          ? 'bg-red-500 '
+          : showNotification.notificationType === 'Resolved'
+            ? 'bg-green-500 '
+            : showNotification.notificationType === 'In Progress'
+              ? 'bg-yellow-500'
+              : 'bg-blue-500'}`}
+                id={showNotification.id}
+                onLoad={()=>{
+                  setTimeout(() => {
+                    setShowNotification(undefined)
+                  }, 500);
+                }}
+      
+              />
+              </div>
+            )}
     </div>
   );
 }

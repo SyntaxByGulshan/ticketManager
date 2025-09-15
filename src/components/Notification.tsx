@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
-interface NotificationProps {
+export interface NotificationProps {
   className: string;
   notificationMessage: string;
   id: string;
-  onLoad: () => void;
+  ticketId?: string;
+  onLoad?: () => void;
 }
 
 export default function Notification({
@@ -13,14 +14,14 @@ export default function Notification({
   id,
   onLoad,
 }: NotificationProps) {
-  // Run onLoad once when component mounts
   useEffect(() => {
-    onLoad();
+    if (onLoad) onLoad();
   }, [onLoad]);
 
   return (
-    <div id={id} className={className}>
-      {notificationMessage}
+    <div id={id} className={className} role="alert">
+      {notificationMessage}{" "}
+      {id && <span className="font-bold">(Ticket ID: {id})</span>}
     </div>
   );
 }

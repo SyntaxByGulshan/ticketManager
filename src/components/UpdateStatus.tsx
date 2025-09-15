@@ -1,64 +1,73 @@
-import { useState } from "react";
 import type TicketType from "../types/types";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateStatus } from "../slice/ticketSlice";
+import { CircleCheck } from "lucide-react";
 
 interface UpdateStatusProps {
   ticket: TicketType;
-  className?:string
+  className?: string;
+  onUpdate: (status: TicketType["status"]) => void;
 }
-export default function UpdateStatus({ ticket ,className}: UpdateStatusProps) {
-  const [showOptions, setShowOptions] = useState(false);
-  const dispatch=useDispatch()
+
+export default function UpdateStatus({
+  ticket,
+  className,
+  onUpdate,
+}: UpdateStatusProps) {
+  const dispatch = useDispatch();
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newStatus = e.target.value as TicketType["status"];
+
+    if (newStatus === "In Progress") {
+      dispatch(updateStatus({ id: ticket.id, status: "In Progress" }));
+      onUpdate("In Progress");
+    } else if (newStatus === "Resolved") {
+      dispatch(
+        updateStatus({
+          id: ticket.id,
+          status: "Resolved",
+          resolvedAt: new Date().toLocaleString(),
+        })
+      );
+      onUpdate("Resolved");
+    }
+    
+  };
+
+
+  let options: TicketType["status"][] = [];
+  if (ticket.status === "Open") {
+    options = ["In Progress", "Resolved"];
+  } else if (ticket.status === "In Progress") {
+    options = ["Resolved"];
+  } else if (ticket.status === "Resolved") {
+    options = []; 
+  }
+
   return (
-    <div
-      className=""
-      onMouseEnter={() => setShowOptions(true)}
-      onMouseLeave={() => setShowOptions(false)}
-    >
-      {/* update button */}
-      <button
-      title={ticket.status==='Resolved' ? "this ticket is resolved":''}
-      className={className}
-      >
-       <span> Update</span>
-      
-      </button>
-    {/* update status if status is not Resolved */}
-      {showOptions && ticket.status!=='Resolved' && (
-        <div className="absolute  w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-auto px-2 ">
-            {/* hide in progress status if it is already in In Progress */}
-            {ticket.status!=='In Progress' && (
-            <button
-            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-t-lg border-b "
-            onClick={() => {
-                setShowOptions(false)
-                dispatch(updateStatus({
-                    id:ticket.id,
-                    status:'In Progress',
-                  
-                }))
-            }}
-          >
-            In Progress
-          </button>) }
-          
-          <button
-            className="w-full text-left px-3 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 rounded-b-lg  "
-            onClick={() =>{
-                setShowOptions(false)
-                dispatch(updateStatus({
-                    id:ticket.id,
-                    status:'Resolved',
-                    resolvedAt:new Date().toLocaleString()
-                    
-                }))
-            }}
-          >
-            Resolved
-          </button>
+    <>
+      {options.length > 0 ? (
+        <select
+          className={`px-3 py-1 border rounded-md  w-28 outline-none ${className}`}
+          onChange={handleChange}
+          value=''
+        >
+          <option value="" disabled >
+            Update
+          </option>
+          {options.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <div className="text-gray-100 text-sm italic w-28 bg-green-400 rounded-md flex items-center justify-center">
+          <span><CircleCheck className="h-5"/></span>
+          <span className="">Resolved</span>
         </div>
       )}
-    </div>
+    </>
   );
 }
