@@ -5,6 +5,7 @@ interface commentType{
   commentStatus:"Open" | "In Progress" | "Resolved";
 }
 
+
 export default interface TicketType {
   id: string;
   title: string;

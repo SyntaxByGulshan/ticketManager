@@ -32,6 +32,7 @@ const ticketSlice = createSlice({
       state.tickets = state.tickets.map((ticket)=>{
             if(ticket.id===action.payload){
               ticket.isDeleted=true;
+             
               return ticket
             }
             return ticket

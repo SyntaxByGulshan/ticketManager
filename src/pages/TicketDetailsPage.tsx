@@ -62,7 +62,7 @@ export default function TicketDetailPage() {
       setCommentError("");
     }
   };
-  // after adding comment
+  // event  after adding comment
   const handleAddComment = () => {
     // check if comment have error or null value
     if (commentError.trim() === "" && newComment.trim() !== "") {
@@ -78,6 +78,13 @@ export default function TicketDetailPage() {
   // return this if ticket is present
   return (
     <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-4 my-2 md:my-12">
+      <button
+            onClick={() => navigate(-1)}
+            className=" mx-2 p-2 bg-gray-500 text-gray-200 rounded hover:bg-gray-700 flex items-center"
+          >
+            <ArrowLeft className="h-5 " />
+            <span>Back</span>
+          </button>
       {/* this is titiel */}
       <h2 className="text-2xl font-bold my-4 p-2">Ticket Details</h2>
       {/* ticket details section */}

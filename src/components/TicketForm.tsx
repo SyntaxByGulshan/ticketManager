@@ -6,18 +6,40 @@ import type TicketType from "../types/types";
 import { X } from 'lucide-react';
 
 const validationSchema = Yup.object({
-  title: Yup.string()
-    .matches(/^[A-Za-z](?:[A-Za-z0-9\.,_\n]|(?!\s{2,})\s)*$/, "Only one space allowed between words")
-    .required("Title cannot be empty")
-    .min(3, "Title must be at least 3 characters")
-    .max(30, "Title cannot exceed 30 characters"),
-  description: Yup.string()
-    .required("Description cannot be empty")
-    .min(10, "Description must be at least 10 characters")
-    .max(100, "Description cannot exceed 100 characters"),
-  priority: Yup.string()
-    .oneOf(["Low", "Medium", "High"], "Invalid priority")
-    .required("Priority is required"),
+title: Yup.string()
+.required("Title is required")
+.min(3, "Title must be at least 3 characters")
+.max(30, "Title cannot exceed 30 characters")
+// Must start with a letter and only contain allowed chars
+.matches(
+/^[A-Za-z][A-Za-z0-9 .,_-]*$/,
+"start with a letter and  may contain letters, numbers, spaces"
+)
+,
+
+description: Yup.string()
+  .required("Description is required")
+  .min(10, "Description must be at least 10 characters")
+  .max(200, "Description cannot exceed 200 characters")
+  .test(
+    "no-html-tags",
+    "Description cannot allowed HTML tags",
+    (value) => !/(<[^>]+>)/.test(value || "")
+  )
+  .test(
+    "no-script",
+    "Description looks unsafe",
+    (value) => !/script\s*>/i.test(value || "")
+  )
+  .test(
+    "no-excessive-newlines",
+    "Not more than 1 consecutive blank lines allowed",
+    (value) => !(typeof value === "string" && /\n{3,}/.test(value))
+  ),
+
+priority: Yup.string()
+.oneOf(["Low", "Medium", "High"], "Select a valid priority")
+.required("Priority is required"),
 });
 
 interface TicketFormProps {
@@ -27,11 +49,9 @@ interface TicketFormProps {
 
 export default function TicketForm({ onClose }: TicketFormProps) {
   const dispatch = useDispatch();
-
-
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 flex justify-center items-center px-2">
-      <div className=" top-10  p-5 max-w-2xl min-w-1/2 shadow-lg rounded-lg bg-gray-300 text-gray-700">
+      <div className=" top-10  p-5 md:max-w-2xl w-full shadow-lg rounded-lg bg-gray-300 text-gray-700">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h2 className=" md:text-2xl font-bold">Create New Ticket</h2>
@@ -62,7 +82,8 @@ export default function TicketForm({ onClose }: TicketFormProps) {
               priority: values.priority as "Low" | "Medium" | "High",
                 status:'Open',
               createdAt: new Date().toLocaleString(),
-              isDeleted: false,
+              isDeleted:false
+              
             };
 
             dispatch(addTicket(newTicket)); 
@@ -81,7 +102,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
                   className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md outline-none  "
                 />
                 {touched.title && errors.title && (
-                  <p className="text-red-500 text-sm">{errors.title}</p>
+                  <span className="text-red-500 text-sm ">{errors.title}</span>
                 )}
               </div>
 
@@ -105,7 +126,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
                 <Field
                   as="select"
                   name="priority"
-                  disabled={!values.title.length}
+                  disabled={!values.title.length }
                   className="mt-1 w-full p-2 border-2 border-gray-400  bg-gray-200 rounded-md outline-none"
                 >
                   <option disabled value="">
