@@ -17,7 +17,7 @@ const ticketSlice = createSlice({
   initialState,
   reducers: {
     addTicket: (state, action: PayloadAction<TicketType>) => {
-      state.tickets.push(action.payload);
+      state.tickets = [action.payload, ...state.tickets];
       localStorage.setItem("ticket", JSON.stringify(state.tickets));
     },
     updateStatus: (state, action: PayloadAction<{ id: string, status: TicketType["status"] ,resolvedAt?:TicketType['resolvedAt'] }>) => {

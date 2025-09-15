@@ -12,9 +12,11 @@ import {
   CircleCheck,
   CircleEllipsis,
   ClockFading,
+
 } from "lucide-react";
 import Notification from "../components/Notification";
 import  type { NotificationProps } from "../components/Notification";
+import ResetButton from "../components/ResetButton";
 interface TicketListProps {
   onCreateTicket: () => void;
 }
@@ -88,10 +90,18 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
+          
+          {/* Reset Or clear all button */}
+         <ResetButton onClick={()=>{
+          setPriorityFilter('All')
+          setStatusFilter("All")
+          setSearch('')
+         }} />
+
           {/* add new ticket  button*/}
           <button
             onClick={onCreateTicket}
-            className="px-5 py-2 bg-[#30aa2e] text-gray-200  rounded-md shadow hover:bg-[#0c9007] "
+            className="px-5 py-2 bg-blue-500 text-gray-200  rounded-md shadow hover:bg-blue-600 "
           >
             <div className="flex gap-1 items-center justify-center">
               <span>
@@ -198,19 +208,20 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
                             message:`Status updated to ${status}`
                          })
                         }}
-                        className={`bg-green-400 border-0 text-gray-100`}
+                        className={`bg-green-500 border-0 text-gray-100`}
                         ticket={ticket}
                       />
                       {/* delete button */}
-                      <button
+
+                      {ticket.status==='Resolved'?(<button
                         onClick={() => {
                           SetIsToDelete(ticket)
                           
                         }}
-                        className="px-3 py-1 bg-[#d83646] text-gray-200 rounded-md shadow hover:bg-[#aa0919]"
+                        className={`px-3 py-1 bg-[#d83646] text-gray-200 rounded-md shadow hover:bg-[#aa0919`}
                       >
                         Delete
-                      </button>
+                      </button>):(<button title="not Resolved" className="bg-red-300 px-3 py-1 rounded-md cursor-no-drop text-white">Delete</button>)}
                     </div>
                   </td>
                 </tr>

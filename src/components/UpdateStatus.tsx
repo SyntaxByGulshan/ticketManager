@@ -18,7 +18,7 @@ export default function UpdateStatus({
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newStatus = e.target.value as TicketType["status"];
-
+    console.log(newStatus)
     if (newStatus === "In Progress") {
       dispatch(updateStatus({ id: ticket.id, status: "In Progress" }));
       onUpdate("In Progress");
@@ -38,9 +38,9 @@ export default function UpdateStatus({
 
   let options: TicketType["status"][] = [];
   if (ticket.status === "Open") {
-    options = ["In Progress", "Resolved"];
+    options = ["Open","In Progress", "Resolved"];
   } else if (ticket.status === "In Progress") {
-    options = ["Resolved"];
+    options = ["In Progress","Resolved"];
   } else if (ticket.status === "Resolved") {
     options = []; 
   }
@@ -49,13 +49,12 @@ export default function UpdateStatus({
     <>
       {options.length > 0 ? (
         <select
-          className={`px-3 py-1 border rounded-md  w-28 outline-none ${className}`}
+          className={`px-3 py-1 border rounded-md  w-32 outline-none ${className}`}
           onChange={handleChange}
-          value=''
+          defaultValue={ticket.status}
+          
         >
-          <option value="" disabled >
-            Update
-          </option>
+         
           {options.map((opt) => (
             <option key={opt} value={opt}>
               {opt}
@@ -63,10 +62,10 @@ export default function UpdateStatus({
           ))}
         </select>
       ) : (
-        <div className="text-gray-100 text-sm italic w-28 bg-green-400 rounded-md flex items-center justify-center">
+        <button title="Resolved" className="text-white text-sm italic w-32 bg-green-300 rounded-md flex items-center justify-center cursor-no-drop ">
           <span><CircleCheck className="h-5"/></span>
           <span className="">Resolved</span>
-        </div>
+        </button>
       )}
     </>
   );

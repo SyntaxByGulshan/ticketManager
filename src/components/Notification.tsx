@@ -20,8 +20,10 @@ export default function Notification({
 
   return (
     <div id={id} className={className} role="alert">
-      {notificationMessage}{" "}
+    <div className="flex flex-col">
+       <span> {notificationMessage}</span>
       {id && <span className="font-bold">(Ticket ID: {id})</span>}
+    </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-white shadow-lg border-b border-gray-200 ">
+    <header className="bg-white shadow-lg border-b border-gray-200  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 ">
           <div className="flex items-center">
@@ -18,7 +18,7 @@ const Header = () => {
           <div className="space-x-2 flex items-center">
             <button
               onClick={() => navigate("report")}
-              className="bg-blue-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-[#0a68bb] "
+              className="bg-gray-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600 "
             > 
              <div className="flex items-center gap-1">
               <span><LayoutDashboard  className="h-5 m-2 md:m-0"/></span>
@@ -29,7 +29,7 @@ const Header = () => {
             onClick={()=>{
               navigate('')
             }}
-            className="bg-[#1c7d36] text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600  " >
+            className="bg-blue-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-blue-600  " >
                <div className="flex items-center gap-1">
                    <Ticket className='h-5 m-2 md:m-0' />
                 <span className="hidden md:flex">Home</span>

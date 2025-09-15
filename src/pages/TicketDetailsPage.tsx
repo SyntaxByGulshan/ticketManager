@@ -230,7 +230,7 @@ export default function TicketDetailPage() {
               message: `update status to ${status}`,
             });
           }}
-          className=''
+          className='bg-green-500 border-0 outline-none text-gray-200'
           ticket={ticket}
         />
         {/* delete button */}
@@ -256,6 +256,7 @@ export default function TicketDetailPage() {
           />
         </div>
       )}
+      {/* notification section */}
       {showNotification && (
               <div className="fixed w-screen flex justify-center items-center  top-2 left-0">
                 <Notification

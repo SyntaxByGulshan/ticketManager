@@ -14,7 +14,7 @@ export default function DeleteMessage({
   onCancel,
   onConfirm,
 }: MessageProps) {
-  const isDeletable = ticket.status=== "Resolved";
+
 
   return (
     <div
@@ -28,13 +28,12 @@ export default function DeleteMessage({
 
       {/* Warning Message */}
       <p
-        className={`mb-3 text-sm ${
-          isDeletable ? "text-gray-600" : "text-red-600 font-medium"
-        }`}
+        className="mb-3 text-sm  text-red-600 font-medium"
+        
       >
-        {isDeletable
-          ? "Are you sure you want to delete this ticket?"
-          : "You cannot delete this ticket unless it is resolved."}
+      
+          Are you sure you want to delete this ticket?
+
       </p>
 
       {/* Ticket Title */}
@@ -75,14 +74,14 @@ export default function DeleteMessage({
         >
           Cancel
         </button>
-        {isDeletable && (
+        
           <button
             onClick={onConfirm}
             className="px-5 py-2 rounded-md bg-red-500 text-white font-medium shadow hover:bg-red-600 "
           >
             Delete
           </button>
-        )}
+        
       </div>
     </div>
   );
