@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { deleteTicket } from "../slice/ticketSlice";
-import DeleteMessage from "../components/DeleteMassage";
+import DeleteMessage from "../components/DeleteConfMassage";
 import type TicketType from "../types/types";
 import Notification from "../components/Notification";
 import type { NotificationProps } from "../components/Notification";

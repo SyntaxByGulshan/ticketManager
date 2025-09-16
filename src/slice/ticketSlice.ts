@@ -15,11 +15,13 @@ const ticketSlice = createSlice({
   name: "tickets",
   initialState,
   reducers: {
+
     // add new ticket 
     addTicket: (state, action: PayloadAction<TicketType>) => {
       state.tickets = [action.payload, ...state.tickets];
       localStorage.setItem("ticket", JSON.stringify(state.tickets));
     },
+
     // update status 
     updateStatus: (
       state,
@@ -36,6 +38,7 @@ const ticketSlice = createSlice({
         localStorage.setItem("ticket", JSON.stringify(state.tickets));
       }
     },
+
     // delete ticket
     deleteTicket: (state, action: PayloadAction<string>) => {
       state.tickets = state.tickets.map((ticket) => {
@@ -48,6 +51,7 @@ const ticketSlice = createSlice({
       });
       localStorage.setItem("ticket", JSON.stringify(state.tickets));
     },
+
     // add comment
     addComment: (
       state,
@@ -70,5 +74,5 @@ const ticketSlice = createSlice({
   },
 });
 export const { addTicket, updateStatus, deleteTicket, addComment } =
-  ticketSlice.actions;
+ticketSlice.actions;
 export default ticketSlice.reducer;
