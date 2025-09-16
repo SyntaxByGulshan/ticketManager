@@ -17,3 +17,4 @@ export default interface TicketType {
   isDeleted:boolean;  
   comments?:commentType[];
 }
+

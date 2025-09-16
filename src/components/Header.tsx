@@ -1,6 +1,5 @@
+import { NavLink, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
-import {Ticket ,LayoutDashboard} from 'lucide-react'
 const Header = () => {
   const navigate = useNavigate();
 
@@ -15,27 +14,21 @@ const Header = () => {
               </h1>
             </div>
           </div>
-          <div className="space-x-2 flex items-center">
-            <button
-              onClick={() => navigate("report")}
-              className="bg-gray-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-gray-600 "
-            > 
-             <div className="flex items-center gap-1">
-              <span><LayoutDashboard  className="h-5 m-2 md:m-0"/></span>
-              <span className="hidden md:flex"> Dashbord</span>
-             </div>
-            </button>
-            <button 
-            onClick={()=>{
-              navigate('')
-            }}
-            className="bg-blue-500 text-gray-200 px-2 py-1 md:px-3 md:py-2 rounded hover:bg-blue-600  " >
-               <div className="flex items-center gap-1">
-                   <Ticket className='h-5 m-2 md:m-0' />
-                <span className="hidden md:flex">Home</span>
-               </div>
-            </button>
+          {/* nav section */}
+          <div>
+            <nav className="space-x-2 flex items-center font-bold">
+              <NavLink to="/dashboard" className={({isActive})=>isActive?'text-gray-900  underline ':' text-gray-700'} >
+                Dashboard
+              </NavLink>
+            {/* home button */}
+            <NavLink to="" className={({isActive})=>isActive?'text-gray-900 underline ':'text-gray-700'}>
+              Home
+            </NavLink>
+            
+            </nav>
           </div>
+          {/* ticket appared formet */}
+          
         </div>
       </div>
     </header>

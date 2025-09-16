@@ -1,5 +1,5 @@
 
-import type TicketType from '../types/types'
+import type TicketType from '../../types/types'
 interface TicketDetailsProps{
     ticket:TicketType
 }

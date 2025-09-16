@@ -2,7 +2,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import PageLayout from './PageLayout'
 import TicketDetailsPage from './pages/TicketDetailsPage'
 import App from './App'
-import DashbordPage from './pages/DashboardPage'
+import DashboardPage from './pages/DashboardPage'
 import DefaultPage from './pages/DefaultPage'
 export default function PageRouting() {
   return (
@@ -12,7 +12,7 @@ export default function PageRouting() {
        <Route path='' element={<PageLayout/>}>
        <Route path='' element={<App/>}/>
        <Route path='/ticket/:id' element={<TicketDetailsPage/>}/>
-       <Route path='/report' element={<DashbordPage/>}/>
+       <Route path='/dashboard' element={<DashboardPage/>}/>
        <Route path='*' element={<DefaultPage/>}/>
        </Route>
       </Routes>

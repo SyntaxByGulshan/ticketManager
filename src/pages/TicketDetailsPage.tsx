@@ -11,8 +11,8 @@ import Notification from "../components/Notification";
 import DeleteButton from "../components/buttons/DeleteButton";
 import AddNewCommentField from "../components/AddNewCommentField";
 import BackButton from "../components/buttons/BackButton";
-import TicketDetails from "../components/TicketDetails";
-import TicketComments from "../components/TicketComments";
+import TicketDetails from "../components/ticket/TicketDetails";
+import TicketComments from "../components/ticket/TicketComments";
 interface TicketNotifictionProps {
   notificationType: "Delete" | TicketType["status"];
   id: NotificationProps["id"];
@@ -45,7 +45,7 @@ export default function TicketDetailPage() {
   return (
 
     <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-6 my-2 md:my-12">
-      
+
       {/* back Button */}
       <BackButton/>
 

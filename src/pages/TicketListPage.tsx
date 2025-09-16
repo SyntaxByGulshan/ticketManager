@@ -11,7 +11,7 @@ import SearchBar from "../components/applyFilters/SearchBar";
 import StatusFilterSelector from "../components/applyFilters/StatusFilterSelector";
 import PriorityFilterSelector from "../components/applyFilters/PriorityFilterSelector";
 import AddNewTicketButton from "../components/buttons/AddNewTicketButton";
-import TicketTable from "../components/TicketTable";
+import TicketTable from "../components/ticket/TicketTable";
 import filterTickets from "../utils/filterTickets";
 interface TicketListProps {
   onCreateTicket: () => void;

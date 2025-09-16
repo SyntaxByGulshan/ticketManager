@@ -1,10 +1,10 @@
-import type TicketType from "../types/types";
-import UpdateStatusButton from "./buttons/UpdateStatusButton";
+import type TicketType from "../../types/types";
+import UpdateStatusButton from "../buttons/UpdateStatusButton";
 import { CircleCheck, CircleEllipsis, ClockFading } from "lucide-react";
-import type { TicketNotifictionProps } from "../pages/TicketListPage";
+import type { TicketNotifictionProps } from "../../pages/TicketListPage";
 import { useNavigate } from "react-router-dom";
-import DeleteButton from "./buttons/DeleteButton";
-import ViewDetailsButton from "./buttons/ViewDetailsButton";
+import DeleteButton from "../buttons/DeleteButton";
+import ViewDetailsButton from "../buttons/ViewDetailsButton";
 
 interface TicketTableProps {
   filteredTickets: TicketType[];

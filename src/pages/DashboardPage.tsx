@@ -3,8 +3,8 @@ import type { RootState } from "../store/store";
 import { MessageSquare, CheckCircle, Trash2, FolderOpen, Activity, Flag } from "lucide-react";
 
 export default function DashboardPage() {
-  const ticketsState = useSelector((state: RootState) => state.tickets);
-  const ticketsArray = ticketsState.tickets;
+  const ticketsArray = useSelector((state: RootState) => state.tickets.tickets);
+  
 
   // --- Stats ---
   const totalTickets = ticketsArray.length;
