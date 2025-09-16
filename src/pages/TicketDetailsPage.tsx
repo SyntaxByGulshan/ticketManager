@@ -50,16 +50,16 @@ export default function TicketDetailPage() {
       <BackButton/>
 
       {/* this is title */}
-      <h2 className="text-2xl font-bold my-4 p-2">Ticket Details</h2>
+      <h2 className="text-2xl font-bold my-1.5 p-2">Ticket Details</h2>
 
       {/* ticket details section */}
       <TicketDetails ticket={ticket} />
 
       {/* stored comments section  + input comment field*/}
-      <div className="mt-7 p-2">
+      <div className="mt-4 p-2">
 
         {/* title */}
-        <h3 className="text-xl font-semibold mb-3">Comments</h3>
+        <h3 className="text-xl font-semibold mb-4">Comments</h3>
 
         {/* comments */}
         <TicketComments ticket={ticket} />
