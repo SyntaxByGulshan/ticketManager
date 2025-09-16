@@ -1,10 +1,2 @@
 @import "tailwindcss";
  
-@keyframes spin-reverse{
-   form{
-    rotate: 0deg;
-   }
-   to{
-    rotate: 360deg;
-   }
-}

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { deleteTicket, addComment } from "../slice/ticketSlice";
-import UpdateStatus from "../components/UpdateStatus";
+import UpdateStatus from "../components/buttons/UpdateStatusButton";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import type TicketType from "../types/types";
@@ -87,7 +87,7 @@ export default function TicketDetailPage() {
 
   // return this if ticket is present
   return (
-    <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-4 my-2 md:my-12">
+    <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-6 my-2 md:my-12">
       <button
         onClick={() => navigate(-1)}
         className=" mx-2 p-2 bg-gray-500 text-gray-200 rounded hover:bg-gray-700 flex items-center"

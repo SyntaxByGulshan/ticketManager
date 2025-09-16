@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
 export interface NotificationProps {
-  className: string;
+  className?: string;
   notificationMessage: string;
   id: string;
-  ticketId?: string;
+  notificationType?:'Delete'|"In Progress" | "Resolved" | 'Open',
   onLoad?: () => void;
 }
 

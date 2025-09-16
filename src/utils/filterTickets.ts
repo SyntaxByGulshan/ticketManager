@@ -1,14 +1,16 @@
 import type TicketType from "../types/types"
 
 interface FilterProps{
-    ticket:TicketType;
+    tickets:TicketType[];
     search:string;
-    statusFilter:string;
+    statusFilter:'All'|"In Progress" | "Resolved" | 'Open';
+    priorityFilter:"All"|"Low" | "Medium" | "High";
     
 }
 
-export default function filter({ticket}:TicketType){
-   const matchesSearch = ticket.title
+export default function filterTickets({tickets,search,statusFilter,priorityFilter}:FilterProps):TicketType[]{
+  return tickets.filter((ticket) => {
+    const matchesSearch = ticket.title
       .toLowerCase()
       .includes(search.toLowerCase());
     const matchesStatus =
@@ -18,5 +20,5 @@ export default function filter({ticket}:TicketType){
     return (
       !ticket.isDeleted && matchesSearch && matchesStatus && matchesPriority
     );
-
+  });
 }

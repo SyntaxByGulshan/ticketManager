@@ -1,6 +1,6 @@
-import type TicketType from "../types/types";
+import type TicketType from "../../types/types";
 import { useDispatch } from "react-redux";
-import { updateStatus } from "../slice/ticketSlice";
+import { updateStatus } from "../../slice/ticketSlice";
 import { CircleCheck } from "lucide-react";
 
 interface UpdateStatusProps {
