@@ -18,7 +18,7 @@ export default function filterTickets({tickets,search,statusFilter,priorityFilte
       statusFilter === "All" || ticket.status === statusFilter;
     const matchesPriority =
       priorityFilter === "All" || ticket.priority === priorityFilter;
-    const matchsCurrentUser=(currentUser.userId===ticket.userId)?true:false 
+    const matchsCurrentUser=currentUser.authLeval==='admin' || currentUser.userId===ticket.userId
     return (
       !ticket.isDeleted && matchesSearch && matchesStatus && matchesPriority && matchsCurrentUser
     );

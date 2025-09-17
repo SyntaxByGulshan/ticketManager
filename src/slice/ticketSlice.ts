@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type TicketType from "../types/types";
 
+
 interface TicketState {
   tickets: TicketType[];
 }

@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import {SquareUserRound} from "lucide-react"
+import {Divide, SquareUserRound} from "lucide-react"
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
+import { useState } from "react";
 const Header = () => {
   const navigate = useNavigate();
   const currentUser=useSelector((state:RootState)=>state.user)
+  const [userCard,setUserCard]=useState(false)
 
   return (
     <header className="bg-white shadow-lg border-b border-gray-200  ">
@@ -31,10 +33,30 @@ const Header = () => {
             </nav>
           </div>
           {/* ticket appared formet */}
-          <button className="flex flex-col items-center justify-center">
-             <span><SquareUserRound /></span>
+          <button className="" onMouseEnter={()=>{
+            setUserCard(true)
+          }}
+          
+          onClick={()=>{
+            setUserCard(!userCard)
+          }}
+          >
+            <span><SquareUserRound className="" /></span>
             
           </button>
+          {userCard && (<div onMouseLeave={()=>{
+            setUserCard(false)
+          }} className="absolute  top-16  left-0 bg-amber-700 w-full">
+            <div>
+              {currentUser.userName}
+            </div>
+            <div>
+              {currentUser.email}
+            </div>
+            <div>
+              {currentUser.userId}
+            </div>
+          </div>)}
         </div>
       </div>
     </header>

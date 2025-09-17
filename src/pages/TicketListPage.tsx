@@ -40,7 +40,7 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
   const [showNotification, setShowNotification] = useState<
     TicketNotifictionProps | undefined
   >();
-  const [displayTypeCard, setDisplayTypeCard] = useState();
+  const [displayTypeCard, setDisplayTypeCard] = useState(false);
 
 const filteredTickets = useMemo(() => 
   filterTickets({

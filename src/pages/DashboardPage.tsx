@@ -1,13 +1,17 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { MessageSquare, CheckCircle, Trash2, FolderOpen, Activity, Flag } from "lucide-react";
+import type TicketType from "../types/types";
 
 export default function DashboardPage() {
-  const ticketsArray = useSelector((state: RootState) => state.tickets.tickets);
-  
+  const totalTickets = useSelector((state: RootState) => state.tickets.tickets);
+  const currentUser=useSelector((state:RootState)=>state.user)
+  const ticketsArray = totalTickets.filter((t:TicketType)=>{
+     return t.userId===currentUser.userId || currentUser.authLeval==='admin'
+  })
 
   // --- Stats ---
-  const totalTickets = ticketsArray.length;
+  const ticketsArrayLength = ticketsArray.length;
   const activeTickets = ticketsArray.filter(
     (t) => t.status === "Open" || t.status === "In Progress"
   ).length;
@@ -64,7 +68,7 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 ">
-        <StatCard  icon={<FolderOpen className="text-blue-500" />} label="Total" value={totalTickets}  />
+        <StatCard  icon={<FolderOpen className="text-blue-500" />} label="Total" value={ticketsArrayLength}  />
         <StatCard icon={<Activity className="text-yellow-500" />} label="Active" value={activeTickets} />
         <StatCard icon={<CheckCircle className="text-green-500" />} label="Resolved" value={resolvedTickets} />
         <StatCard icon={<Trash2 className="text-red-500" />} label="Deleted" value={deletedTickets} />
