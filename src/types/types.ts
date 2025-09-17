@@ -7,6 +7,7 @@ interface commentType{
 
 
 export default interface TicketType {
+  userId:string
   id: string;
   title: string;
   description: string;
@@ -16,5 +17,13 @@ export default interface TicketType {
   resolvedAt?:string;
   isDeleted:boolean;  
   comments?:commentType[];
+}
+
+export interface UserType{
+  authLeval:'admin'|'user'
+  userId:string;
+  userName:string;
+  email:string;
+  password:string;
 }
 

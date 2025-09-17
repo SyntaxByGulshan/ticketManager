@@ -1,10 +1,10 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addTicket } from "../slice/ticketSlice";
 import type TicketType from "../types/types";
 import { X } from 'lucide-react';
-
+import type { RootState } from "../store/store";
 const validationSchema = Yup.object({
 title: Yup.string()
 .required("Title is required")
@@ -49,6 +49,7 @@ interface TicketFormProps {
 
 export default function TicketForm({ onClose }: TicketFormProps) {
   const dispatch = useDispatch();
+  const user=useSelector((state:RootState)=>state.user)
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 flex justify-center items-center px-2">
       <div className=" top-10  p-5 md:max-w-2xl w-full shadow-lg rounded-lg bg-gray-300 text-gray-700">
@@ -76,6 +77,7 @@ export default function TicketForm({ onClose }: TicketFormProps) {
           onSubmit={(values, { resetForm }) => {
             console.log(values.description)
             const newTicket:TicketType = {
+              userId:user.userId,
               id: `TN${new Date().getTime()}`,
               title: values.title,
               description: values.description,

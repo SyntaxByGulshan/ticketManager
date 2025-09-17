@@ -13,13 +13,13 @@ export default function ResetButton({ onClick }: ResetButtonProps) {
     onClick();
 
     // stop spinning after 1 second
-    setTimeout(() => setIsRotating(false), 1000);
+    setTimeout(() => setIsRotating(false), 300);
   };
 
   return (
     <button
       onClick={handleClick}
-      className="bg-gray-200 rounded-md shadow-sm border-2 border-gray-400 py-2 px-4 flex items-center cursor-pointer hover:bg-gray-300"
+      className="flex-1/2  rounded-md shadow-sm py-2 px-2 flex items-center justify-center cursor-pointer hover:bg-green-600 bg-green-500 text-gray-200"
     >
       <RotateCw
         className={`h-5 ${isRotating ? "animate-spin" : ""}`}

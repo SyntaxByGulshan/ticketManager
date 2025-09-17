@@ -13,7 +13,7 @@ export default function StatusFilterSelector({statusFilter,setStatusFilter}:Stat
             onChange={(e) =>{ 
                 console.log(e.target.value)
                 setStatusFilter(e.target.value as StatusFilter)}}
-            className="px-4 py-2 border-2 border-gray-400 rounded-md shadow-sm bg-gray-200 outline-none cursor-pointer"
+            className=" p-2 border-2 border-gray-400 rounded-md shadow-sm bg-gray-200 outline-none cursor-pointer"
           >
             <option value="All">All Status</option>
             <option value="Open">Open</option>

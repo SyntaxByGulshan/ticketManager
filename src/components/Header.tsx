@@ -1,7 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
-
+import {SquareUserRound} from "lucide-react"
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 const Header = () => {
   const navigate = useNavigate();
+  const currentUser=useSelector((state:RootState)=>state.user)
 
   return (
     <header className="bg-white shadow-lg border-b border-gray-200  ">
@@ -28,7 +31,10 @@ const Header = () => {
             </nav>
           </div>
           {/* ticket appared formet */}
-          
+          <button className="flex flex-col items-center justify-center">
+             <span><SquareUserRound /></span>
+            
+          </button>
         </div>
       </div>
     </header>

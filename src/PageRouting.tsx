@@ -4,6 +4,8 @@ import TicketDetailsPage from './pages/TicketDetailsPage'
 import App from './App'
 import DashboardPage from './pages/DashboardPage'
 import DefaultPage from './pages/DefaultPage'
+import LoginPage from './auth/pages/LoginPage'
+import SignupPage from './auth/pages/SignupPage'
 export default function PageRouting() {
   return (
     <>
@@ -14,6 +16,8 @@ export default function PageRouting() {
        <Route path='/ticket/:id' element={<TicketDetailsPage/>}/>
        <Route path='/dashboard' element={<DashboardPage/>}/>
        <Route path='*' element={<DefaultPage/>}/>
+       <Route path='/login' element={<LoginPage/>}/>
+       <Route path='/signup' element={<SignupPage/>}/>
        </Route>
       </Routes>
       </BrowserRouter>

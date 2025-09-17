@@ -7,7 +7,7 @@ export default function AddNewTicketButton({onClick}:AddNewTicketButtonProps) {
   return (
     <button
             onClick={onClick}
-            className="px-5 py-2 bg-blue-500 text-gray-200  rounded-md shadow hover:bg-blue-600 "
+            className="px-3 py-2 bg-blue-500 text-gray-200  rounded-md shadow hover:bg-blue-600 "
           >
             <div className="flex gap-1 items-center justify-center">
               <span>

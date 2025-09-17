@@ -7,6 +7,8 @@ interface TicketState {
   tickets: TicketType[];
 }
 
+
+
 const initialState: TicketState = {
   tickets: JSON.parse(localStorage.getItem("ticket") || "[]"),
 };

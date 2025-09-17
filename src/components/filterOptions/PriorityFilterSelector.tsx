@@ -12,7 +12,7 @@ export default function PriorityFilterSelector({priorityFilter,setPriorityFilter
     <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value as PriorityFilter)}
-            className="px-4 py-2 border-2 border-gray-400 rounded-md shadow-sm bg-gray-200 outline-none cursor-pointer"
+            className="px-3 py-2 border-2 border-gray-400 rounded-md shadow-sm bg-gray-200 outline-none cursor-pointer"
           >
             <option value="All">All Priorities</option>
             <option value="Low">Low</option>
