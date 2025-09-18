@@ -59,9 +59,19 @@ export default function LoginPage() {
               <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">
                 Login
               </button>
+
             </Form>
           )}
         </Formik>
+         <div className="flex items-center gap-2 text-sm">
+      <span className="text-gray-600">New user?</span>
+      <button
+        onClick={() => navigate("/signup")}
+        className="text-blue-600 hover:underline font-medium"
+      >
+        Sign up
+      </button>
+    </div>
       </div>
     </div>
   );

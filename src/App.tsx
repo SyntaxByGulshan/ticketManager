@@ -13,10 +13,9 @@ function App() {
   console.log(user)
   useEffect(()=>{
     if(!user.userId){
-     navigate('login')
+     navigate('/login')
   }
   })
-  
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="mx-auto p-4">

@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { UserType } from "../types/types";
 
+
 interface LoginDataType {
   email: string;
   password: string;
@@ -58,8 +59,16 @@ export const userSlice = createSlice({
         state.password = "";
       }
     },
+    LogOutUser:(state)=>{
+      sessionStorage.removeItem('user')
+      state.authLeval = "user";
+        state.userId = "";
+        state.userName = "";
+        state.email = "";
+        state.password = "";
+    }
   },
 });
 
-export const { signUpUser, loginInUser } = userSlice.actions;
+export const { signUpUser, loginInUser,LogOutUser } = userSlice.actions;
 export default userSlice.reducer;

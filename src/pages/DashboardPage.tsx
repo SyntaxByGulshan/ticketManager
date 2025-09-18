@@ -2,13 +2,22 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { MessageSquare, CheckCircle, Trash2, FolderOpen, Activity, Flag } from "lucide-react";
 import type TicketType from "../types/types";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
+  const navigate=useNavigate()
   const totalTickets = useSelector((state: RootState) => state.tickets.tickets);
   const currentUser=useSelector((state:RootState)=>state.user)
   const ticketsArray = totalTickets.filter((t:TicketType)=>{
      return t.userId===currentUser.userId || currentUser.authLeval==='admin'
   })
+  
+   useEffect(()=>{
+      if(!currentUser.userId){
+       navigate('/login')
+    }
+    })
 
   // --- Stats ---
   const ticketsArrayLength = ticketsArray.length;

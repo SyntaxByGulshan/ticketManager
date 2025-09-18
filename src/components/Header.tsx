@@ -1,62 +1,81 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import {Divide, SquareUserRound} from "lucide-react"
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { useState } from "react";
+import UserCard from "./cards/UserCard";
+import { LogOutUser } from "../slice/userSlice";
+
+// import { logout } from "../slice/userSlice";
+
 const Header = () => {
   const navigate = useNavigate();
-  const currentUser=useSelector((state:RootState)=>state.user)
-  const [userCard,setUserCard]=useState(false)
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state: RootState) => state.user);
+  const [userCard, setUserCard] = useState(false);
+
+  // Logout handler
+  const handleLogout = () => {
+    dispatch(LogOutUser());
+    setUserCard(false);
+    sessionStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
-    <header className="bg-white shadow-lg border-b border-gray-200  ">
+    <header className="bg-white shadow-lg border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 ">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <h1 className="md:text-2xl  font-bold text-gray-700 cursor-pointer" onClick={() => navigate("")}>
-                IssueTrack
-              </h1>
-            </div>
-          </div>
-          {/* nav section */}
-          <div>
-            <nav className="space-x-2 flex items-center font-bold">
-              <NavLink to="/dashboard" className={({isActive})=>isActive?'text-gray-900  underline ':' text-gray-700'} >
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <h1
+            className="md:text-2xl font-bold text-gray-700 cursor-pointer"
+            onClick={() => navigate("")}
+          >
+            IssueTrack
+          </h1>
+
+          <nav>
+            <div className="hidden md:flex gap-4 font-semibold">
+              <NavLink
+                to={""}
+                className={({ isActive }) =>
+                  isActive ? "underline text-gray-800" : ""
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to={"/dashboard"}
+                className={({ isActive }) =>
+                  isActive ? "underline text-gray-800" : ""
+                }
+              >
+        
                 Dashboard
               </NavLink>
-            {/* home button */}
-            <NavLink to="" className={({isActive})=>isActive?'text-gray-900 underline ':'text-gray-700'}>
-              Home
-            </NavLink>
-            
-            </nav>
+            </div>
+          </nav>
+
+          {/* User Menu */}
+          <div className="relative">
+            <div
+            title={currentUser.userName}
+              onClick={() => {
+                setUserCard(!userCard);
+              }}
+              className="w-10 h-10 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-md flex items-center justify-center text-gray-600 font-semibold text-lg"
+            >
+              {currentUser.userName?.[0]?.toUpperCase() || "U"}
+            </div>
+
+            {userCard && (
+              <UserCard
+                setUserCard={setUserCard}
+                currentUser={currentUser}
+                handleLogout={handleLogout}
+              />
+            )}
           </div>
-          {/* ticket appared formet */}
-          <button className="" onMouseEnter={()=>{
-            setUserCard(true)
-          }}
-          
-          onClick={()=>{
-            setUserCard(!userCard)
-          }}
-          >
-            <span><SquareUserRound className="" /></span>
-            
-          </button>
-          {userCard && (<div onMouseLeave={()=>{
-            setUserCard(false)
-          }} className="absolute  top-16  left-0 bg-amber-700 w-full">
-            <div>
-              {currentUser.userName}
-            </div>
-            <div>
-              {currentUser.email}
-            </div>
-            <div>
-              {currentUser.userId}
-            </div>
-          </div>)}
         </div>
       </div>
     </header>

@@ -4,14 +4,18 @@ import userRegister from "../utils/userRegister";
 import { useNavigate } from "react-router-dom";
 
 const SignupSchema = Yup.object({
-  UserName: Yup.string().required("Name is required").min(3, "At least 3 chars"),
+  UserName: Yup.string()
+    .required("Name is required")
+    .min(3, "At least 3 chars"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required").min(6, "At least 6 chars"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(5, "At least 5 chars"),
 });
 
 export default function SignupPage() {
-  const navigate=useNavigate()
-  const register=userRegister()
+  const navigate = useNavigate();
+  const register = userRegister();
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -22,16 +26,18 @@ export default function SignupPage() {
           initialValues={{ UserName: "", email: "", password: "" }}
           validationSchema={SignupSchema}
           onSubmit={(values, { resetForm }) => {
-            const reg=register({email:values.email,userName:values.UserName,password:values.password})
-            if(reg){
+            const reg = register({
+              email: values.email,
+              userName: values.UserName,
+              password: values.password,
+            });
+            if (reg) {
               alert("Signup successful!");
-             resetForm();
-             navigate('/')
+              resetForm();
+              navigate("/");
+            } else {
+              alert(" email already used");
             }
-            else{
-              alert(' email already used')
-            }
-            
           }}
         >
           {() => (
@@ -42,7 +48,11 @@ export default function SignupPage() {
                   placeholder="Enter your name"
                   className="w-full p-2 border rounded"
                 />
-                <ErrorMessage name="UserName" component="p" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="UserName"
+                  component="p"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div>
@@ -52,7 +62,11 @@ export default function SignupPage() {
                   placeholder="Enter your email"
                   className="w-full p-2 border rounded"
                 />
-                <ErrorMessage name="email" component="p" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="email"
+                  component="p"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div>
@@ -62,15 +76,31 @@ export default function SignupPage() {
                   placeholder="Enter your password"
                   className="w-full p-2 border rounded"
                 />
-                <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="password"
+                  component="p"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
-              <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white p-2 rounded"
+              >
                 Sign Up
               </button>
             </Form>
           )}
         </Formik>
+        <div className="flex items-center gap-2 text-sm">
+          <span className="text-gray-600">Already have an account?</span>
+          <button
+            onClick={() => navigate("/login")}
+            className="text-blue-600 hover:underline font-medium"
+          >
+            Log in
+          </button>
+        </div>
       </div>
     </div>
   );

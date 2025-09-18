@@ -13,7 +13,7 @@ import PriorityFilterSelector from "../components/filterOptions/PriorityFilterSe
 import AddNewTicketButton from "../components/buttons/AddNewTicketButton";
 import TicketTable from "../components/ticket/TicketTable";
 import filterTickets from "../utils/filterTickets";
-import TicketCards from "../components/ticket/TicketCards";
+import TicketCards from "../components/cards/TicketCards";
 import DisplayTypeButton from "../components/buttons/DisplayTypeButton";
 interface TicketListProps {
   onCreateTicket: () => void;
@@ -54,7 +54,7 @@ const filteredTickets = useMemo(() =>
 );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 text-gray-700">
+    <div className="max-w-7xl mx-auto px-4  text-gray-700">
       {/* Search + Filters+ Add new Button section */}
       <div className="bg-gray-300 shadow-md rounded-md p-4 md:p-6 mb-6 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
         {/* Search */}

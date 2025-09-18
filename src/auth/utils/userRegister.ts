@@ -33,7 +33,7 @@ export default function userRegister() {
             email:email,
             password:password,
             userId:`${1000+totalusers}`,
-            authLeval:'admin'
+            authLeval:'user'
          }
          dispatch(signUpUser(newUser))
        return true  
