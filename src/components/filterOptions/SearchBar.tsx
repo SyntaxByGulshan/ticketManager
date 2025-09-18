@@ -11,7 +11,9 @@ export default function SearchBar({ setSearch, search }: SearchBarProps) {
       <input
         type="text"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          sessionStorage.setItem('search',e.target.value)
+          setSearch(e.target.value)}}
         placeholder="Search by title..."
         className="w-full p-1 outline-none"
       />

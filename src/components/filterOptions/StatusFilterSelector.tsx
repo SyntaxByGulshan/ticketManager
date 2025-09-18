@@ -12,6 +12,7 @@ export default function StatusFilterSelector({statusFilter,setStatusFilter}:Stat
             value={statusFilter}
             onChange={(e) =>{ 
                 console.log(e.target.value)
+                 sessionStorage.setItem('statusFilter',e.target.value as StatusFilter)
                 setStatusFilter(e.target.value as StatusFilter)}}
             className=" p-2 border-2 border-gray-400 rounded-md shadow-sm bg-gray-200 outline-none cursor-pointer"
           >

@@ -15,6 +15,9 @@ import TicketTable from "../components/ticketComponents/TicketTable";
 import filterTickets from "../utils/filterTickets";
 import TicketCards from "../components/cards/TicketCards";
 import DisplayTypeButton from "../components/buttons/DisplayTypeButton";
+import { statusOfPriorityFilter } from "../utils/statusOfPriorityFilter";
+import { statusOfStatusFilter } from "../utils/statusOfStatusFilter";
+import statusOfSearchBar from "../utils/statusOfSearchBar";
 interface TicketListProps {
   onCreateTicket: () => void;
 }
@@ -29,13 +32,13 @@ export default function TicketListPage({ onCreateTicket }: TicketListProps) {
   const dispatch = useDispatch();
   const currentUser=useSelector((state:RootState)=>state.user)
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(statusOfSearchBar||'');
   const [statusFilter, setStatusFilter] = useState<
     "All" | "In Progress" | "Resolved" | "Open"
-  >("All");
+  >(statusOfStatusFilter);
   const [priorityFilter, setPriorityFilter] = useState<
     "All" | "Low" | "Medium" | "High"
-  >("All");
+  >(statusOfPriorityFilter);
   const [isToDelete, setIsToDelete] = useState<TicketType | false>();
   const [showNotification, setShowNotification] = useState<
     TicketNotifictionProps | undefined
@@ -78,6 +81,9 @@ const filteredTickets = useMemo(() =>
           <div className="flex gap-2 w-full justify-center ">
             <ResetButton
             onClick={() => {
+              sessionStorage.removeItem('statusFilter')
+              sessionStorage.removeItem('priorityFilter')
+              sessionStorage.removeItem('search')
               setPriorityFilter("All");
               setStatusFilter("All");
               setSearch("");
