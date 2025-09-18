@@ -7,7 +7,6 @@ import DefaultPage from './pages/DefaultPage'
 import LoginPage from './auth/pages/LoginPage'
 import SignupPage from './auth/pages/SignupPage'
 import ProfilePage from './pages/ProfilePage'
-import AuthPage from './auth/pages/AuthPage'
 export default function PageRouting() {
   return (
     <>
@@ -21,7 +20,7 @@ export default function PageRouting() {
        <Route path='*' element={<DefaultPage/>}/>
        <Route path='/login' element={<LoginPage/>}/>
        <Route path='/signup' element={<SignupPage/>}/>
-       <Route path='/auth' element={<AuthPage/>}/>
+      
        </Route>
       </Routes>
       </BrowserRouter>
