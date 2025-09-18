@@ -11,7 +11,7 @@ import SearchBar from "../components/filterOptions/SearchBar";
 import StatusFilterSelector from "../components/filterOptions/StatusFilterSelector";
 import PriorityFilterSelector from "../components/filterOptions/PriorityFilterSelector";
 import AddNewTicketButton from "../components/buttons/AddNewTicketButton";
-import TicketTable from "../components/ticket/TicketTable";
+import TicketTable from "../components/ticketComponents/TicketTable";
 import filterTickets from "../utils/filterTickets";
 import TicketCards from "../components/cards/TicketCards";
 import DisplayTypeButton from "../components/buttons/DisplayTypeButton";

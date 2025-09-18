@@ -5,12 +5,31 @@ import { useNavigate } from "react-router-dom";
 
 const SignupSchema = Yup.object({
   UserName: Yup.string()
+    .matches(/^[a-zA-Z ]*$/, "Only alphabets are allowed")
+    .matches(
+      /^[a-zA-Z]+([\s][a-zA-Z]+)*$/,
+      "Only one space is allowed in middle"
+    )
     .required("Name is required")
-    .min(3, "At least 3 chars"),
+    .min(3, "At least 3 letters")
+    .max(21, "Not more then 20 letters"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
     .required("Password is required")
-    .min(5, "At least 5 chars"),
+    .matches(/^\S*$/, "Spaces are not allowed")
+    .matches(/[A-Z]/, "At least one uppercase letter")
+    .matches(/[a-z]/, "At least one lowercase letter")
+    .matches(/[0-9]/, "At least one number")
+    .matches(
+      /[@$!%*?&#^()_+\-=\[\]{};':"\\|,.\/?]/,
+      "At least one special character"
+    )
+    .min(6, "At least 6 chars"),
+
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password")],
+    "Passwords must match"
+  ),
 });
 
 export default function SignupPage() {
@@ -23,7 +42,12 @@ export default function SignupPage() {
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
 
         <Formik
-          initialValues={{ UserName: "", email: "", password: "" }}
+          initialValues={{
+            UserName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          }}
           validationSchema={SignupSchema}
           onSubmit={(values, { resetForm }) => {
             const reg = register({
@@ -82,10 +106,23 @@ export default function SignupPage() {
                   className="text-red-500 text-sm"
                 />
               </div>
+              <div>
+                <Field
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm   Password"
+                  className="w-full p-2 border rounded"
+                />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="p"
+                  className="text-red-500 text-sm"
+                />
+              </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded"
               >
                 Sign Up
               </button>

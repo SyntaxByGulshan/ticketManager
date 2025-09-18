@@ -34,7 +34,7 @@ const Header = () => {
             IssueTrack
           </h1>
 
-          <nav>
+          {currentUser.userId &&<nav>
             <div className="hidden md:flex gap-4 font-semibold">
               <NavLink
                 to={""}
@@ -54,7 +54,7 @@ const Header = () => {
                 Dashboard
               </NavLink>
             </div>
-          </nav>
+          </nav>}
 
           {/* User Menu */}
           <div className="relative">

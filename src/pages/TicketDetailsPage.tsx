@@ -11,8 +11,8 @@ import Notification from "../components/Notification";
 import DeleteButton from "../components/buttons/DeleteButton";
 import AddNewCommentField from "../components/AddNewCommentField";
 import BackButton from "../components/buttons/BackButton";
-import TicketDetails from "../components/ticket/TicketDetails";
-import TicketComments from "../components/ticket/TicketComments";
+import TicketDetails from "../components/ticketComponents/TicketDetails";
+import TicketComments from "../components/ticketComponents/TicketComments";
 interface TicketNotifictionProps {
   notificationType: "Delete" | TicketType["status"];
   id: NotificationProps["id"];

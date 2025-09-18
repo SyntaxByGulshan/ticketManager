@@ -4,6 +4,10 @@ import { MessageSquare, CheckCircle, Trash2, FolderOpen, Activity, Flag } from "
 import type TicketType from "../types/types";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import totalActiveTickets from "../utils/totalActiveTickets";
+import totalResolvedTickets from "../utils/totalResolvedTickets";
+import recentActivityFilter from "../utils/recentActivityFilter";
+import recentCommentsFilter from "../utils/recentCommentsFilter";
 
 export default function DashboardPage() {
   const navigate=useNavigate()
@@ -12,64 +16,27 @@ export default function DashboardPage() {
   const ticketsArray = totalTickets.filter((t:TicketType)=>{
      return t.userId===currentUser.userId || currentUser.authLeval==='admin'
   })
-  
    useEffect(()=>{
       if(!currentUser.userId){
        navigate('/login')
     }
     })
 
-  // --- Stats ---
   const ticketsArrayLength = ticketsArray.length;
-  const activeTickets = ticketsArray.filter(
-    (t) => t.status === "Open" || t.status === "In Progress"
-  ).length;
-  const resolvedTickets = ticketsArray.filter(
-    (t) => t.status === "Resolved"
-  ).length;
+  const activeTickets = totalActiveTickets(ticketsArray)
+  const resolvedTickets = totalResolvedTickets(ticketsArray)
   const deletedTickets = ticketsArray.filter((t) => t.isDeleted).length;
 
-  // --- Priority counts ---
+  //  Priority counts 
   const lowPriority = ticketsArray.filter((t) => t.priority === "Low").length;
   const mediumPriority = ticketsArray.filter((t) => t.priority === "Medium").length;
   const highPriority = ticketsArray.filter((t) => t.priority === "High").length;
 
-  // --- Collect recent comments ---
-  const allComments: { ticketId: string; comment: string; commentTime: Date }[] = [];
-  ticketsArray.forEach((ticket) => {
-    if (ticket.comments) {
-      ticket.comments.forEach((c) => {
-        allComments.push({
-          ticketId: ticket.id,
-          comment: c.comment,
-          commentTime: new Date(c.commentTime),
-        });
-      });
-    }
-  });
-  const recentComments = allComments.sort((a,b)=>b.commentTime.getTime() - a.commentTime.getTime()).slice(0,5)
+  // Collect recent comments 
+  const recentComments = recentCommentsFilter(ticketsArray)
 
-  // --- Collect recent activity ---
-  const allActivity: { message: string; date: Date; type: string }[] = [];
-  ticketsArray.forEach((ticket) => {
-    if (ticket.createdAt) {
-      allActivity.push({
-        message: `Ticket #${ticket.id} created`,
-        date: new Date(ticket.createdAt),
-        type: "create",
-      });
-    }
-    if (ticket.status === "Resolved") {
-      allActivity.push({
-        message: `Ticket #${ticket.id} resolved`,
-        date: new Date(ticket.resolvedAt||''), 
-        type: "resolve",
-      });
-    }
-  });
-
-  const recentActivity = allActivity
-    .sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0,5)
+  //  Collect recent activity 
+  const recentActivity = recentActivityFilter(ticketsArray)
   
   return (
     <div className="p-6 max-w-5xl mx-auto text-gray-700">

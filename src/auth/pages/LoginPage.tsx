@@ -9,9 +9,7 @@ const LoginSchema = Yup.object({
 });
 
 export default function LoginPage() {
-
   const navigate=useNavigate()
-
   const user=userValidation()
   
   return (
@@ -56,7 +54,7 @@ export default function LoginPage() {
                 <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
               </div>
 
-              <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">
+              <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded">
                 Login
               </button>
 
@@ -67,7 +65,7 @@ export default function LoginPage() {
       <span className="text-gray-600">New user?</span>
       <button
         onClick={() => navigate("/signup")}
-        className="text-blue-600 hover:underline font-medium"
+        className="text-blue-500 hover:text-blue-600 hover:underline font-medium"
       >
         Sign up
       </button>
