@@ -15,7 +15,7 @@ export default function LoginPage() {
   const user = userValidation();
 
   return (
-    <div className="flex justify-center items-center py-24 px-2 ">
+    <div className="flex justify-center items-center py-24 px-2  text-gray-600">
       <div className="bg-gray-50 shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="email"
@@ -57,7 +57,7 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="password"
@@ -68,7 +68,7 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded"
+                className="w-full bg-green-500 hover:bg-green-600 text-gray-100 p-2 rounded"
               >
                 Login
               </button>

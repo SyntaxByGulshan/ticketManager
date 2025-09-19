@@ -41,7 +41,7 @@ export default function SignupPage() {
   const register = userRegister();
 
   return (
-    <div className="flex justify-center items-center py-20 px-2">
+    <div className="flex justify-center items-center py-20 px-2 text-gray-600">
       <div className="bg-gray-50 shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
 
@@ -74,12 +74,12 @@ export default function SignupPage() {
                 <Field
                   name="UserName"
                   placeholder="Enter your name"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="UserName"
                   component="p"
-                  className="text-red-500 text-sm"
+                  className="text-red-500 text-sm "
                 />
               </div>
 
@@ -88,7 +88,7 @@ export default function SignupPage() {
                   name="email"
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="email"
@@ -102,7 +102,7 @@ export default function SignupPage() {
                   name="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="password"
@@ -115,7 +115,7 @@ export default function SignupPage() {
                   name="confirmPassword"
                   type="password"
                   placeholder="Confirm   Password"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded border-gray-400 outline-gray-500"
                 />
                 <ErrorMessage
                   name="confirmPassword"
@@ -126,7 +126,7 @@ export default function SignupPage() {
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-gray-100 p-2 rounded"
               >
                 Sign Up
               </button>

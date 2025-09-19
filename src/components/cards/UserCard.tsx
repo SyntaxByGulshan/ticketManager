@@ -13,7 +13,7 @@ export default function UserCard({
 }: UserCardProps) {
   const navigate = useNavigate();
   return (
-    <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border p-4 z-50 text-gray-700">
+    <div className="absolute right-0 mt-2 w-64 max-w-screen bg-gray-50 rounded-xl shadow-lg border-2 border-gray-400 p-4 z-50 text-gray-600">
       {/* Profile Section */}
       <div
         onClick={() => {
@@ -23,13 +23,13 @@ export default function UserCard({
       >
         <X size={20} />
       </div>
-      <div className="flex items-center gap-3 border-b pb-3 mb-3">
+      <div className="flex items-center gap-3 border-b border-gray-400 pb-3 mb-3">
         <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold text-lg">
           {currentUser.userName?.[0]?.toUpperCase() || <UserIcon/>}
         </div>
         <div>
           <div className="font-semibold text-gray-800">
-            {currentUser.userName}
+            {currentUser.userName || (<div className="bg-gray-200 w-32 h-8 rounded-md"></div>)}
           </div>
           <div className="text-sm text-gray-600 truncate">
             {currentUser.email}
@@ -46,7 +46,7 @@ export default function UserCard({
               setUserCard(false);
               navigate("/profile");
             }}
-            className="flex items-center gap-2 w-full px-3 py-2 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition"
+            className="flex items-center gap-2 w-full px-3 py-2  font-medium rounded-lg hover:bg-gray-100 transition"
           >
             <User size={18} />
             Profile
@@ -60,7 +60,7 @@ export default function UserCard({
               setUserCard(false);
               navigate("/dashboard");
             }}
-            className="md:hidden flex items-center gap-2 w-full px-3 py-2  font-medium rounded-lg  hover:bg-gray-100 text-gray-700 "
+            className="md:hidden flex items-center gap-2 w-full px-3 py-2  font-medium rounded-lg  hover:bg-gray-100  "
           >
             <LayoutDashboard size={18} />
             Dashbord
