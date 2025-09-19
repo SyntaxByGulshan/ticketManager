@@ -23,12 +23,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-lg border-b border-gray-200">
+    <header className="bg-white shadow-lg border-b border-gray-200 text-gray-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <h1
-            className="md:text-2xl font-bold text-gray-700 cursor-pointer"
+            className="md:text-2xl font-bold  cursor-pointer"
             onClick={() => navigate("")}
           >
             IssueTrack

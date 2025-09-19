@@ -56,7 +56,7 @@ export default function AddNewCommentField({
         {/* comment add button */}
         <button
           onClick={handleAddComment}
-          className=" bg-[#568ec0] hover:bg-blue-600 text-white px-4 py-2 rounded-lg outline-none"
+          className=" bg-[#568ec0] hover:bg-blue-600 text-gray-200 px-4 py-2 rounded-lg outline-none"
         >
           Add
         </button>

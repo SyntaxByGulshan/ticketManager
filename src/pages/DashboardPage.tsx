@@ -39,7 +39,7 @@ export default function DashboardPage() {
   const recentActivity = recentActivityFilter(ticketsArray)
   
   return (
-    <div className="p-6 max-w-5xl mx-auto text-gray-700">
+    <div className="p-6 max-w-5xl mx-auto text-gray-600">
       <h2 className="text-3xl font-bold mb-8 text-center"> Dashboard</h2>
 
       {/* Stats Cards */}

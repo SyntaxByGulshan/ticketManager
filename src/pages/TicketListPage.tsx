@@ -143,7 +143,7 @@ const filteredTickets = useMemo(() =>
         <div className="fixed w-screen flex justify-center items-center  top-2 left-0">
           <Notification
             notificationMessage={showNotification.message}
-            className={`relative text-gray-200  p-2 rounded-md text-center ${
+            className={`relative text-gray-300  p-2 rounded-md text-center ${
               showNotification.notificationType === "Delete"
                 ? "bg-red-500 "
                 : showNotification.notificationType === "Resolved"

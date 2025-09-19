@@ -87,7 +87,7 @@ export default function TicketDetailPage() {
         {/* delete button */}
         <DeleteButton
           onClick={() => SetIsToDelete(ticket)}
-          className="px-4 py-2 bg-[#d83646] text-white rounded hover:bg-[#aa0919]"
+          className="px-4 py-2 bg-[#d83646] text-gray-200 rounded hover:bg-[#aa0919]"
         />
       </div>
 

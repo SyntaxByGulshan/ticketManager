@@ -23,10 +23,10 @@ export default function TicketTable({
   const navigate = useNavigate();
   return (
     <div className="overflow-x-auto  rounded-md ">
-      <table className="w-full border-collapse text-sm md:text-base">
+      <table className="w-full border-collapse text-sm md:text-base text-gray-600">
         {/* table header */}
         <thead>
-          <tr className="bg-gray-300 text-left ">
+          <tr className="bg-gray-300  text-left ">
             <th className="p-4">ID</th>
             <th className="p-4">Title</th>
             <th className="p-4">Priority</th>
@@ -117,7 +117,7 @@ export default function TicketTable({
                         message: `Status updated to ${status}`,
                       });
                     }}
-                    className={`bg-green-500 border-0 text-gray-100`}
+                    className={`bg-green-500 border-0 text-gray-200`}
                     ticket={ticket}
                   />
 
@@ -132,7 +132,7 @@ export default function TicketTable({
                   ) : (
                     <DeleteButton
                       title="not Resolved"
-                      className="bg-red-300 px-3 py-1 rounded-md cursor-no-drop text-white"
+                      className="bg-red-300 px-3 py-1 rounded-md cursor-no-drop text-gray-50"
                     />
                   )}
                 </div>

@@ -20,7 +20,6 @@ export default function PageRouting() {
        <Route path='*' element={<DefaultPage/>}/>
        <Route path='/login' element={<LoginPage/>}/>
        <Route path='/signup' element={<SignupPage/>}/>
-      
        </Route>
       </Routes>
       </BrowserRouter>
