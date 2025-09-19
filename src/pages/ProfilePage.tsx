@@ -21,7 +21,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-4">
+    <div className="flex justify-center py-20 min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-4">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">

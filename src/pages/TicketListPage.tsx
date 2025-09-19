@@ -57,7 +57,7 @@ const filteredTickets = useMemo(() =>
 );
 
   return (
-    <div className="max-w-7xl mx-auto px-4  text-gray-700">
+    <div className="max-w-7xl mx-auto px-2  text-gray-700">
       {/* Search + Filters+ Add new Button section */}
       <div className="bg-gray-300 shadow-md rounded-md p-4 md:p-6 mb-6 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
         {/* Search */}

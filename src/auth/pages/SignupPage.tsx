@@ -2,6 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import userRegister from "../utils/userRegister";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Notification from "../../components/Notification";
+
 
 const SignupSchema = Yup.object({
   UserName: Yup.string()
@@ -33,12 +36,13 @@ const SignupSchema = Yup.object({
 });
 
 export default function SignupPage() {
+   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
   const register = userRegister();
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+    <div className="flex justify-center items-center py-20 px-2">
+      <div className="bg-gray-50 shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
 
         <Formik
@@ -60,7 +64,7 @@ export default function SignupPage() {
               resetForm();
               navigate("/");
             } else {
-              alert(" email already used");
+              setShowNotification(true)
             }
           }}
         >
@@ -139,6 +143,20 @@ export default function SignupPage() {
           </button>
         </div>
       </div>
+      {showNotification && (
+              <div className="fixed w-screen flex justify-center items-center  top-2 left-0">
+                <Notification
+                  notificationMessage='Email already used'
+                  className={`relative text-gray-200  p-2 rounded-md text-center bg-red-500`}
+                 
+                  onLoad={() => {
+                    setTimeout(() => {
+                      setShowNotification(false);
+                    }, 3000);
+                  }}
+                />
+              </div>
+            )}
     </div>
   );
 }

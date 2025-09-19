@@ -44,7 +44,7 @@ export default function TicketDetailPage() {
   // return this if ticket is present
   return (
 
-    <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6 pb-10 pt-6 my-2 md:my-12">
+    <div className="max-w-3xl mx-auto bg-gray-200 text-gray-700 shadow rounded-xl px-6  pb-10 pt-6 my-2 md:my-12">
 
       {/* back Button */}
       <BackButton/>

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { UserType } from "../../types/types";
-import { LogIn, LogOut, User, X, LayoutDashboard, HomeIcon } from "lucide-react";
+import { LogIn, LogOut, User, X, LayoutDashboard, HomeIcon, UserIcon } from "lucide-react";
 interface UserCardProps {
   currentUser: UserType;
   handleLogout: () => void;
@@ -25,7 +25,7 @@ export default function UserCard({
       </div>
       <div className="flex items-center gap-3 border-b pb-3 mb-3">
         <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold text-lg">
-          {currentUser.userName?.[0]?.toUpperCase() || "U"}
+          {currentUser.userName?.[0]?.toUpperCase() || <UserIcon/>}
         </div>
         <div>
           <div className="font-semibold text-gray-800">

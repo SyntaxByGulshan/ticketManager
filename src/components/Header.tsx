@@ -5,8 +5,8 @@ import type { RootState } from "../store/store";
 import { useState } from "react";
 import UserCard from "./cards/UserCard";
 import { LogOutUser } from "../slice/userSlice";
+import { UserIcon } from "lucide-react";
 
-// import { logout } from "../slice/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Header = () => {
               }}
               className="w-10 h-10 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-md flex items-center justify-center text-gray-600 font-semibold text-lg"
             >
-              {currentUser.userName?.[0]?.toUpperCase() || "U"}
+              {currentUser.userName?.[0]?.toUpperCase() || <UserIcon/>}
             </div>
 
             {userCard && (
