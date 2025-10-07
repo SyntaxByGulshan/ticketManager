@@ -90,7 +90,6 @@ export default function LoginPage() {
           <Notification
             notificationMessage='Invalid User'
             className={`relative text-gray-200  p-2 rounded-md text-center bg-red-500`}
-           
             onLoad={() => {
               setTimeout(() => {
                 setShowNotification(false);

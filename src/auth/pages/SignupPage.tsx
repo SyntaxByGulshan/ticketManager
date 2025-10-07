@@ -9,12 +9,13 @@ import Notification from "../../components/Notification";
 const SignupSchema = Yup.object({
   UserName: Yup.string()
     .matches(/^[a-zA-Z ]*$/, "Only alphabets are allowed")
-    .matches(
-      /^[a-zA-Z]+([\s][a-zA-Z]+)*$/,
-      "Only one space is allowed in middle"
-    )
     .required("Name is required")
     .min(3, "At least 3 letters")
+    .matches(/^[a-zA-Z]+[a-zA-Z ]*[a-zA-Z]$/,'No whitespace is allowed at end of name')
+    .matches(
+      /^[a-zA-Z]+([\s][a-zA-Z]+)*$/,
+      "More then 1 whitespace in middle is not allowed"
+    )
     .max(21, "Not more then 20 letters"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()

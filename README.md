@@ -1,53 +1,51 @@
-🎟 Ticket Management System
+# 🎟 Ticket Management System
 
-A simple, efficient, and responsive Ticket Management System built with React, Redux Toolkit, and Tailwind CSS.
-This system helps you create, track, filter, and manage tickets with ease.
+A simple, efficient, and responsive **Ticket Management System** built with **React**, **Redux Toolkit**, and **Tailwind CSS**.  
+This system helps you **create, track, filter, and manage tickets** with ease.
 
-🚀 Features
+---------------------------------------
 
-🔍 Search Bar – Quickly find tickets by keywords.
+## 🚀 Features
 
-🎚 Filter Options – Filter by status (Open, In Progress, Resolved) and priority (Low, Medium, High).
+-  **Search Bar** – Quickly find tickets by keywords.  
+-  **Filter Options** – Filter by status *(Open, In Progress, Resolved)* and priority *(Low, Medium, High)*.  
+-   **View Modes** – Toggle between **Table View** and **Card View**.  
+-   **Add Ticket** – Create new tickets easily.  
+-   **Delete Confirmation** – Delete tickets safely with a confirmation modal.  
+-   **Notifications** – Instant feedback for actions *(delete, update, etc.)*.  
+-   **Reset Filters** – Quickly clear all filters and search inputs.  
+-   **Session Storage Persistence** – Keeps filters and search state even after page refresh.  
 
-🗂 View Modes – Toggle between Table View and Card View.
+---------------------------------------
 
-➕ Add Ticket – Create new tickets easily.
+## 🛠️ Tech Stack
 
-❌ Delete Confirmation – Delete tickets safely with confirmation modal.
+| Category | Technology |
+|-----------|-------------|
+| **Frontend** | React 18 |
+| **State Management** | Redux Toolkit |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS |
+| **Animations** | Framer Motion |
 
-🔔 Notifications – Instant feedback for actions (delete, update, etc.).
+----------------------------------------
 
-♻ Reset Filters – Quickly clear all filters and search inputs.
+## 📸 Screenshots
 
-💾 Session Storage Persistence – Keeps your filters and search state even after page refresh.
+### 🧾 Ticket Table View
+<p align="center">
+  <img src="./public/tableView.png" width="700" alt="Ticket Table View">
+</p>
 
-🛠️ Tech Stack
+### 🪪 Ticket Card View
+<p align="center">
+  <img src="./public/tableView.png" width="700" alt="Ticket Card View">
+</p>
 
-React 18
+---------------------------------------
 
-Redux Toolkit (state management)
+## ⚙️ Installation & Setup
 
-TypeScript (type safety)
-
-Tailwind CSS (styling)
-
-Framer Motion (animations)
-
-📸 Screenshots
-Ticket Table View
-
-Ticket Card View
-
-📂 Project Structure
-src/
-│── components/
-│   ├── buttons/         # Reusable buttons (Add, Reset, Display toggle)
-│   ├── cards/           # Ticket card view components
-│   ├── filterOptions/   # Search + Filter UI components
-│   ├── ticketComponents # Ticket table and related parts
-│   └── Notification.tsx # Notification UI
-│
-│── slice/               # Redux slices (ticketSlice, userSlice, etc.)
-│── store/               # Redux store configuration
-│── utils/               # Utility functions (filterTickets, helpers, etc.)
-│── pages/               # Page components (TicketListPage, DescriptionPage, etc.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SyntaxByGulshan/ticketManager.git

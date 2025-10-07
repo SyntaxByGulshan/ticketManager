@@ -21,8 +21,8 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex justify-center py-20 min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-4">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg">
+    <div className="flex justify-center py-20 px-4">
+      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg my-auto ">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <button
@@ -52,7 +52,7 @@ export default function ProfilePage() {
         </div>
 
         {/* User Info */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="flex justify-between p-3 border rounded-lg">
             <span className="text-gray-500 text-sm">User ID</span>
             <span className="text-lg font-medium">{user?.userId}</span>
@@ -65,22 +65,7 @@ export default function ProfilePage() {
 
           
         </div>
-
-        {/* Actions */}
-        <div className="mt-6 grid grid-cols-2 gap-3">
-          <button
-            onClick={() => navigate("/edit-profile")}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg shadow-md"
-          >
-            Edit Profile
-          </button>
-          <button
-            onClick={() => navigate("/")}
-            className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg shadow-md"
-          >
-            Home
-          </button>
-        </div>
+       
       </div>
     </div>
   );
