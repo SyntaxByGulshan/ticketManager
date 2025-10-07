@@ -42,7 +42,7 @@ This system helps you **create, track, filter, and manage tickets** with ease.
   <img src="./public/tableView.png" width="700" alt="Ticket Card View">
 </p>
 
----------------------------------------
+----------------------------------------
 
 ## ⚙️ Installation & Setup
 
